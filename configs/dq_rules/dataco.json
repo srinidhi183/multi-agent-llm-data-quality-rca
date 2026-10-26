@@ -1,0 +1,40 @@
+
+{
+  "tables": [
+    {
+      "name": "dataco_supply_chain",
+      "path": "data/silver/dataco/dataco_supply_chain",
+      "checks": [
+        {
+          "type": "null_percentage",
+          "column": "order_id",
+          "max_null_pct": 0
+        },
+        {
+          "type": "duplicate_percentage",
+          "columns": ["order_item_id"],
+          "max_duplicate_pct": 0
+        },
+        {
+          "type": "referential_integrity",
+          "column": "order_customer_id",
+          "reference_path": "data/silver/dataco/dataco_supply_chain",
+          "reference_column": "customer_id",
+          "max_orphan_pct": 0
+        }
+      ]
+    },
+    {
+      "name": "gold_sales_by_category",
+      "path": "data/gold/dataco/gold_sales_by_category",
+      "checks": [
+        {
+          "type": "null_percentage",
+          "column": "category_name",
+          "max_null_pct": 0
+        }
+      ]
+    }
+  ]
+}
+

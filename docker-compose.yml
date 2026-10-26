@@ -1,0 +1,29 @@
+
+services:
+  airflow:
+    image: apache/airflow:2.10.5-python3.12
+    container_name: thesis-airflow
+    restart: unless-stopped
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      AIRFLOW__CORE__EXECUTOR: SequentialExecutor
+      AIRFLOW__CORE__LOAD_EXAMPLES: "False"
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: sqlite:////opt/airflow/airflow.db
+      AIRFLOW__WEBSERVER__EXPOSE_CONFIG: "False"
+      AIRFLOW_HOME: /opt/airflow
+      THESIS_RUNNER_TOKEN: ${THESIS_RUNNER_TOKEN}
+      THESIS_RUNNER_URL: http://host.docker.internal:8765
+
+    volumes:
+      - ./dags:/opt/airflow/dags
+      - ./airflow/logs:/opt/airflow/logs
+      - ./airflow/plugins:/opt/airflow/plugins
+      - airflow-db:/opt/airflow
+
+    command: standalone
+
+volumes:
+  airflow-db:

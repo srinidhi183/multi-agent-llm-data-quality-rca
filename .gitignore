@@ -1,0 +1,72 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.sqlite
+*.sqlite3
+
+# Local runner credentials
+orchestration/.runner_token
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Datasets and generated tables
+data/
+datasets/
+downloads/
+*.parquet
+*.arrow
+*.csv
+*.csv.gz
+
+# Delta Lake artifacts
+_delta_log/
+*.crc
+
+# Experiment outputs and private evaluation answers
+experiments/output/
+experiments/ground_truth/
+experiments/evaluation/case_manifest.json
+
+# Generated evidence and reports
+evidence/
+experiments/validation/
+experiments/evaluation/*_report.json
+
+# Spark temporary files
+spark-warehouse/
+metastore_db/
+derby.log
+
+# Airflow runtime files
+airflow.db
+airflow-webserver.pid
+airflow-scheduler.pid
+
+# Docker local overrides
+docker-compose.override.yml
+
+# Jupyter
+.ipynb_checkpoints/

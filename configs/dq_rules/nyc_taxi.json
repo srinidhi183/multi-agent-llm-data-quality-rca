@@ -1,0 +1,37 @@
+{
+  "tables": [
+    {
+      "name": "yellow_taxi_trips",
+      "path": "data/silver/nyc_taxi/yellow_taxi_trips",
+      "checks": [
+        {
+          "type": "null_percentage",
+          "column": "tpep_pickup_datetime",
+          "max_null_pct": 0
+        },
+        {
+          "type": "range",
+          "column": "trip_distance",
+          "minimum": 0
+        }
+      ]
+    },
+    {
+      "name": "gold_monthly_summary",
+      "path": "data/gold/nyc_taxi/gold_monthly_summary",
+      "checks": [
+        {
+          "type": "duplicate_percentage",
+          "columns": ["_source_month"],
+          "max_duplicate_pct": 0
+        },
+        {
+          "type": "range",
+          "column": "dq_pass_rate",
+          "minimum": 0,
+          "maximum": 1
+        }
+      ]
+    }
+  ]
+}

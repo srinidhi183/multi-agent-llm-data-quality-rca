@@ -1,0 +1,41 @@
+
+{
+  "tables": [
+    {
+      "name": "olist_orders_dataset",
+      "path": "data/silver/olist/olist_orders_dataset",
+      "checks": [
+        {
+          "type": "null_percentage",
+          "column": "order_id",
+          "max_null_pct": 0
+        },
+        {
+          "type": "duplicate_percentage",
+          "columns": ["order_id"],
+          "max_duplicate_pct": 0
+        },
+        {
+          "type": "referential_integrity",
+          "column": "customer_id",
+          "reference_path": "data/silver/olist/olist_customers_dataset",
+          "reference_column": "customer_id",
+          "max_orphan_pct": 0
+        }
+      ]
+    },
+    {
+      "name": "olist_order_reviews_dataset",
+      "path": "data/silver/olist/olist_order_reviews_dataset",
+      "checks": [
+        {
+          "type": "range",
+          "column": "review_score",
+          "minimum": 1,
+          "maximum": 5
+        }
+      ]
+    }
+  ]
+}
+
